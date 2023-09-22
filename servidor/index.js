@@ -49,16 +49,18 @@ app.get('/usuarios/cadastrar', async function(req, res){
 })
 
 app.post('/logar', (req, res) => {
-  if(req.body.usuario === "picolo@teste" && req.body.senha === "123" || req.body.usuario === "felipe@teste" && req.body.senha === "123" ){
+  let usuarios = usuario.findAll()
+  let usuarionome = usuarios.nome
+  let usuariosenha = usuarios.senha
+
+  
+  if(req.body.usuario === usuarionome && req.body.senha === usuariosenha || req.body.usuario === "felipe@teste" && req.body.senha === "123" ){
     const id = '1'
     const token = jwt.sign({ id }, process.env.SECRET, {
-      expiresIn: 300
+      expiresIn: 30000
     })
     res.cookie('token', token, { httpOnly: true })
-    return res.json({
-      usuario: req.body.usuario,
-      token: token
-    })
+    return res.redirect('/') //home
   }
   res.status(500).json({ mensagem: "login Inválido" })
 })

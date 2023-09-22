@@ -8,6 +8,9 @@
   <title>Autenticação</title>
 </head>
 <body>
+  <a href="/usuarios/listar"><button>Lista de usuarios</button></a>
+  <a href="/usuarios/cadastrar"><button>Cadastros de usuarios</button></a>
+  <a href="/"><button>Home</button></a>
    <h1>Lista de usuarios</h1> 
    <div style="background-color: gray;"><% usuarios.forEach((usuario) => { %>
     <p style="color: white;"><%= usuario.nome %></p>
