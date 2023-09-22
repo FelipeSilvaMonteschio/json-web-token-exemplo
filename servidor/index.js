@@ -40,7 +40,8 @@ app.get('/', async function(req, res){
 })
 
 app.get('/usuarios/listar',async function(req, res){
-  res.render('listauser');
+  let usuarios = await usuario.findAll()
+  res.render('listauser', {usuarios});
 })
 
 app.get('/usuarios/cadastrar', async function(req, res){
@@ -73,8 +74,8 @@ app.post('/deslogar', function(req, res) {
 app.post('/usuarios/cadastrar', async function(req, res){
 
   if(req.body.senha === req.body.senhacf){
-    console.log('usuario cadastrado com sucesso')
     await usuario.create(req.body);
+    res.redirect('/usuarios/listar')
   }else{
     console.log('usuario não cadastrado tente novamente')
   }

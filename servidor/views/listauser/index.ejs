@@ -9,6 +9,8 @@
 </head>
 <body>
    <h1>Lista de usuarios</h1> 
-   
+   <div style="background-color: gray;"><% usuarios.forEach((usuario) => { %>
+    <p style="color: white;"><%= usuario.nome %></p>
+<% }) %></div>
 </body>
 </html>
