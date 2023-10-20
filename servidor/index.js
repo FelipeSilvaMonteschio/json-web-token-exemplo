@@ -8,12 +8,12 @@ var cookieParser = require('cookie-parser')
 
 const express = require('express');
 const { usuario } = require('./models');
-
 const app = express();
 
 app.set('view engine', 'ejs');
-
 app.use(cors());
+
+const crypto = require('./crypto')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
@@ -40,7 +40,9 @@ app.get('/', async function(req, res){
 })
 
 app.get('/usuarios/listar',async function(req, res){
+
   let usuarios = await usuario.findAll()
+
   res.render('listauser', {usuarios});
 })
 
@@ -49,12 +51,11 @@ app.get('/usuarios/cadastrar', async function(req, res){
 })
 
 app.post('/logar', (req, res) => {
-  let usuarios = usuario.findAll()
-  let usuarionome = usuarios.nome
-  let usuariosenha = usuarios.senha
-
+  const dados = req.body;
+  let usuarioT = usuario.findOne({ where: { usuario: req.query.nome } })
+  let usuarioS = usuario.findOne({ where: { senha: req.query.senha } })
   
-  if(req.body.usuario === usuarionome && req.body.senha === usuariosenha || req.body.usuario === "felipe@teste" && req.body.senha === "123" ){
+  if(dados.usuario === "felipe@teste" && dados.senha === "123" || dados.usuario == usuarioT  ){
     const id = '1'
     const token = jwt.sign({ id }, process.env.SECRET, {
       expiresIn: 30000
@@ -63,20 +64,20 @@ app.post('/logar', (req, res) => {
     return res.redirect('/') //home
   }
   res.status(500).json({ mensagem: "login Inválido" })
+  console.log(usuarios)
 })
 
 app.post('/deslogar', function(req, res) {
   res.cookie('token', null, { httpOnly: true })
-  res.json({
-    deslogado: true
-  })
-  res.render('autenticar')
+  res.redirect('/autenticar')
 })
 
 app.post('/usuarios/cadastrar', async function(req, res){
 
   if(req.body.senha === req.body.senhacf){
-    await usuario.create(req.body);
+    const novusuario = req.body
+    novusuario.senha = crypto.encrypt(novusuario.senha);
+    await usuario.create(novusuario);
     res.redirect('/usuarios/listar')
   }else{
     console.log('usuario não cadastrado tente novamente')
