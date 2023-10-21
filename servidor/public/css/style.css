@@ -94,3 +94,22 @@ body {
   background-color: #ff0676;
 
 }
+
+.cardUser{
+  background-color: #fff;
+  width: 30%;
+  height: auto;
+  margin: 50px;
+  padding: 1.5%;
+  border-radius: 8px;
+}
+
+.titleUser{
+  color: red;
+  font-size: 1.2rem;
+}
+
+.descriptionUser{
+  color: rgb(212, 0, 212);
+  margin-left: 2%;
+}
