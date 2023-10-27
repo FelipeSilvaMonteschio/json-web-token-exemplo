@@ -35,7 +35,7 @@ app.post('/logar', async (req, res)=> {
   let Nome = req.body.usuario; let Senha = req.body.senha
 
   
-  const autorizado = await usuario.findOne ({   // Se a autenticação for bem-sucedida, cria um token JWT e o define como um cookie
+  const autorizado = await usuario.findOne ({  
     where: { nome: req.body.usuario, senha: crypto.encrypt(req.body.senha) 
     } });
 
