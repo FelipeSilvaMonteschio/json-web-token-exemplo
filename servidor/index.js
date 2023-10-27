@@ -31,10 +31,16 @@ app.get('/autenticar', async function(req, res){
 })
 
 // Autenticar
-app.post('/logar',(req, res)=> {
+app.post('/logar', async (req, res)=> {
   let Nome = req.body.usuario; let Senha = req.body.senha
 
-  if(Nome === "felipe@teste" && Senha === "123"    ){
+  
+  const autorizado = await usuario.findOne ({   // Se a autenticação for bem-sucedida, cria um token JWT e o define como um cookie
+    where: { nome: req.body.usuario, senha: crypto.encrypt(req.body.senha) 
+    } });
+
+
+  if( autorizado ){
     const id = '1'
     const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 30000 })
     res.cookie('token', token)
