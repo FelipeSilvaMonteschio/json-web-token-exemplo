@@ -4,17 +4,29 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/lista.css">
+  <link rel="stylesheet" href="/css/navbar.css">
   <title>Autenticação</title>
 </head>
-<body>
-  <a href="/usuarios/listar"><button>Lista de usuarios</button></a>
-  <a href="/usuarios/cadastrar"><button>Cadastros de usuarios</button></a>
-  <a href="/"><button>Home</button></a>
-   <h1 style="color: white;">Lista de usuarios</h1> 
+<body style="text-align: center;">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/usuarios/listar">Lista de Usuarios</a></li>
+    <li><a href="/usuarios/cadastrar">Cadastrar</a></li>
+    <form class="test" action="/deslogar" method="post">
+      <input class="btnDeslogar" type="submit" value="Deslogar" />
+    </form>
+  </ul>
+
+<div class="lista">
+  <h1>Lista de Usuários</h1> 
+</div>
    <div class="cardUser"><% usuarios.forEach((usuario) => { %>
-    <label >E-mail : </label><label class="titleUser"><%= usuario.nome %></label><br/><br/>
-    <label >Senha : </label><label class="descriptionUser"><%= usuario.senha %></label><br/><br/>
+    <label class="titleNome" >E-mail : </label><label class="titleUser"><%= usuario.nome %></label><br/><br/>
+    <label class="titleNome" >Senha : </label><label class="descriptionUser"><%= usuario.senha %></label><br/><br/>
 <% }) %></div>
+
+
+
 </body>
 </html>

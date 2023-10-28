@@ -1,0 +1,48 @@
+body{
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(https://wallpapers.com/images/featured/4k-space-9w27dqmc4nrs3xwd.jpg);
+}
+
+ul{
+  list-style-type: none;
+  display: flex;
+  background-color: #cacaca;
+}
+
+li{
+  padding: 10px 30px;
+  border-radius: 4px;
+}
+
+li:hover {
+  background-color: #989898;
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(3, 65, 117);
+  font-size: 1.4rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
+}
+
+.btnDeslogar{
+  border: none;
+  margin-top: 9px;  
+  color: rgb(3, 65, 117);
+  background-color: #cacaca;
+  cursor: pointer; 
+  font-size: 1.4rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  ;
+}
+
+.btnDeslogar:hover{
+  background-color: #989898;
+  cursor: pointer;
+}
+
+.test:hover{
+  background-color: #989898;
+  cursor: pointer;
+}

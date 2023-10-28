@@ -1,0 +1,36 @@
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://wallpapers.com/images/featured/4k-space-9w27dqmc4nrs3xwd.jpg);
+}
+
+.lista h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.6rem;
+    color: #fff;
+}
+
+.cardUser {
+    background-color: #cacaca;
+    padding: 1.5%;
+    border-radius: 6px;
+    max-width: 380px;
+    text-align: left;
+    margin-left: 39%;
+}
+
+label{
+    font-size: 1.25rem;
+}
+
+.titleNome{
+    color: purple;
+}
+
+.titleUser{
+    color: red;
+}
+
+.descriptionUser{
+color: blue;
+}
