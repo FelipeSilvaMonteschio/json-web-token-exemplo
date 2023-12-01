@@ -10,9 +10,8 @@ export default async function ListaUsers({users}){
                 {users?.map((user, index) =>
 
                 <div key={index} className={styles.card}>
-                <h1>{user.name}</h1>
-                <h1>{user.email}</h1>
-                <h1>{user.password}</h1>
+                <h1>{user.nome}</h1>
+                <h1>{user.senha}</h1>
                 </div>
 
             )}

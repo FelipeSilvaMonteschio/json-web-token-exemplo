@@ -32,21 +32,23 @@ app.get('/autenticar', async function(req, res){
 // Autenticar
 app.post('/logar', async (req, res)=> {
   const autorizado = await usuario.findOne ({  
-    where: { nome: req.body.usuario, senha: crypto.encrypt(req.body.senha) 
+    where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) 
     } });
-console.log(req.body.usuario)
+console.log(req.body.nome)
 
   if( autorizado ){
-    const id = '1'
+    const id =  autorizado.id
     const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 30000 })
     res.cookie('token', token)
-    return res.json( token )
+    return res.redirect('/')
   }
     res.status(500).json({ mensagem: "login Inválido" })
   
 })
 app.use(cors());
 app.use(express.json());
+
+
 //Home
 app.get('/', async function(req, res){
   res.render("home")

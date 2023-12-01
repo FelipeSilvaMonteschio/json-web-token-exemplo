@@ -18,10 +18,6 @@ export default function Navbar () {
         <html lang="pt-br">
           <body className={styles.divflex}>
             <div id="minhadiv" className={styles.navbar}>
-
-
-
-
               <a  href='/pages/dashboard'><button id={styles.button}>home</button></a>
               <a  href='/pages/register'><button id={styles.button}>register </button></a>
               <a  href='/pages/alterar'><button id={styles.button}>alterar</button></a>

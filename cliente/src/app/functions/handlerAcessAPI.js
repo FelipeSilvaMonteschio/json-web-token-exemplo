@@ -1,12 +1,13 @@
 'use server'
-const url = 'localhost:4000'
+import { cookies } from "next/dist/client/components/headers"
 
+const serverUrl = 'localhost:4000'
 
 // autenticação
 const getUserAuthenticated = async (user) => {
     console.log(user)
 try{
-    const resposeOfApi = await fetch(url + "/logar", 
+    const resposeOfApi = await fetch(serverUrl + "/logar", 
     {   method:"POST",
         headers:{ "Content-Type":"Application/json"},
         body: JSON.stringify(user)
@@ -19,6 +20,22 @@ return userAuth
     return null
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //lista de usuarios
 const getUsers = async () => {

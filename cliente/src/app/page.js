@@ -8,13 +8,14 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function Login() {
   const [user, setUser] = useState({
-    usuario: '',
+    nome: '',
     senha: '',
   });
   const { push, refresh } = useRouter();
 
   const handlerLogin = async (e) => {
     e.preventDefault();
+    
     try {
       const userAuth = await handlerAcessUser(user);
       if(userAuth.token === undefined){
@@ -36,9 +37,9 @@ export default function Login() {
         <label id={styles.label}>Email</label>
         <input required className={styles.input}
           placeholder='E-mail'
-          name="usuario"
+          name="nome"
           type="email"
-          onChange={(e) => { setUser({ ...user, usuario: e.target.value }) }}>
+          onChange={(e) => { setUser({ ...user, nome: e.target.value }) }}>
         </input><br/>
 
 
