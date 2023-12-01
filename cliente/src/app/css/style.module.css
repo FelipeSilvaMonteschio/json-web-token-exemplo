@@ -1,0 +1,147 @@
+.register {
+    background-color: lightgray;
+    width: 350px;
+    height: 40vh, auto;
+    padding-top: 2%;
+    border-radius: 8px;
+    margin-top: 2%;
+    text-align: center;
+    margin-left: 38%;
+}
+#btn {
+    background-color: gray;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10%;
+}
+#btn:hover{
+    background-color: rgb(63, 63, 63);
+    color: #fff;
+}
+
+#label {
+    margin-right: 10px;
+    font-size: 1.2rem;
+    color: black;
+}
+
+.navbar {
+    background-color: lightgray;
+    height: 10%;
+    display: flex;
+    width: 100%;
+}
+
+.divflex {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.divLogin {
+    background-color: gray;
+    margin: 0;
+    padding: 0;
+}
+
+#button {
+    margin: 20px;
+    width: 110px, auto;
+    height: 50%;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#button:hover{
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+}
+
+.child {
+    margin-left: 32%;
+}
+
+.card {
+    width: 22%;
+    min-width: 500px;
+    height: 20vh;
+    min-height: 200px;
+    border-radius: 8px;
+    background-color: lightblue;
+    padding-left: 1%;
+    margin: 1%;
+}
+.cardconteiner{
+    display: flex;
+}
+
+.usuario {
+    width: 22%;
+    border-radius: 8px;
+    padding: 0px 5px;
+    color: black;
+    font-weight: bold;
+}
+
+#image {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.btndiv {
+    display: flex;
+    padding-right: 30px;
+    width: 100px;
+    height: 20x;
+    background-color: rgb(238, 238, 238);  
+    margin: 20px;
+    border-radius: 8px;  
+    text-align: center; 
+    padding-top: 9px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 12px;
+}
+
+#name {
+    font-family: tahoma;
+    font-weight: 600;
+    font-size: 2.2rem;
+}
+
+#password {
+    font-family: sans-serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+}
+
+.input {
+    width: 85%;
+    height: 1.8vh;
+    padding: 2% 2% 2% 6%;
+    border: none;
+    margin-top: 4%;
+    margin-bottom: 6%;
+    border-radius: 6px;
+}
+.input:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}

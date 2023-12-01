@@ -12,8 +12,7 @@ const crypto = require('./crypto')
 const app = express();
 
 app.set('view engine', 'ejs');
-app.use(cors());
-app.use(express.json());
+
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
 app.use(cookieParser());
@@ -32,24 +31,22 @@ app.get('/autenticar', async function(req, res){
 
 // Autenticar
 app.post('/logar', async (req, res)=> {
-  let Nome = req.body.usuario; let Senha = req.body.senha
-
-  
   const autorizado = await usuario.findOne ({  
     where: { nome: req.body.usuario, senha: crypto.encrypt(req.body.senha) 
     } });
+console.log(req.body.usuario)
 
-
-  if( autorizado || req.body.usuario == 'felipe@teste123' && req.body.senha == 1234 ){
+  if( autorizado ){
     const id = '1'
     const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 30000 })
     res.cookie('token', token)
-    return res.redirect('/')
-  }else{
-    res.status(500).json({ mensagem: "login Inválido" })
+    return res.json( token )
   }
+    res.status(500).json({ mensagem: "login Inválido" })
+  
 })
-
+app.use(cors());
+app.use(express.json());
 //Home
 app.get('/', async function(req, res){
   res.render("home")
@@ -79,6 +76,8 @@ app.get('/usuarios/listar',async function(req, res){
   let usuarios = await usuario.findAll()
 
   res.render('listauser', {usuarios});
+
+  // res.json(usuarios)
 })
 
 // Deslogar
@@ -88,6 +87,6 @@ app.post('/deslogar', function(req, res) {
 })
 
 // Servidor Test
-app.listen(3000, function() {
-  console.log('App de Exemplo escutando na porta 3000!')
+app.listen(4000, function() {
+  console.log('App de Exemplo escutando na porta 4000!')
 });
