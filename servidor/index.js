@@ -81,12 +81,14 @@ app.post('/usuarios/cadastrar', async function (req, res) {
 
 // Lista de usuarios
 app.get('/usuarios/listar', async function (req, res) {
-
-  let usuarios = await usuario.findAll()
-
-  res.render('listauser', { usuarios });
-
-  // res.json(usuarios)
+  try {
+    var listUsuarios = await usuario.findAll();
+    console.log(listUsuarios)
+    res.json(listUsuarios);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Ocorreu um erro ao buscar os usuário.' });
+  }
 })
 
 // Deslogar
