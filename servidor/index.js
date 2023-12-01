@@ -13,8 +13,12 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cors());
+app.use(express.json());
+
+
 app.use(cookieParser());
 app.use(
   expressJWT({
@@ -25,70 +29,73 @@ app.use(
 );
 
 // Pagina Autenticar
-app.get('/autenticar', async function(req, res){
+app.get('/autenticar', async function (req, res) {
   res.render('autenticar');
 })
 
 // Autenticar
-app.post('/logar', async (req, res)=> {
-  const autorizado = await usuario.findOne ({  
-    where: { nome: req.body.nome, senha: crypto.encrypt(req.body.senha) 
-    } });
-console.log(req.body.nome)
-
-  if( autorizado ){
-    const id =  autorizado.id
-    const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 30000 })
-    res.cookie('token', token)
-    return res.redirect('/')
-  }
-    res.status(500).json({ mensagem: "login Inválido" })
+app.post('/logar', async (req, res) => {
+  console.log(req.body.nome)
+  const autorizado = await usuario.findOne({
+    where: {
+      nome: req.body.nome, senha: crypto.encrypt(req.body.senha)
+    }
+  });
   
-})
-app.use(cors());
-app.use(express.json());
 
+  if (autorizado) {
+    const id = autorizado.id
+    const token = jwt.sign({ id }, process.env.SECRET, { expiresIn: 30000 })
+    return res.cookie('token', token, { httpOnly: true }).json({
+nome: autorizado.nome,
+      token: token
+    })
+
+  }
+  res.status(500).json({ mensagem: "login Inválido" })
+
+})
 
 //Home
-app.get('/', async function(req, res){
+app.get('/', async function (req, res) {
   res.render("home")
 })
 
 // Pagina de Cadastro
-app.get('/usuarios/cadastrar', async function(req, res){
+app.get('/usuarios/cadastrar', async function (req, res) {
   res.render('cadastro');
 })
 
 // Cadastro
-app.post('/usuarios/cadastrar', async function(req, res){
+app.post('/usuarios/cadastrar', async function (req, res) {
 
-  if(req.body.senha === req.body.senhacf){
+  if (req.body.senha === req.body.senhacf) {
     const novusuario = req.body
     novusuario.senha = crypto.encrypt(novusuario.senha);
     await usuario.create(novusuario);
     res.redirect('/usuarios/listar')
-  }else{
+  } else {
     console.log('usuario não cadastrado tente novamente')
   }
 })
 
 // Lista de usuarios
-app.get('/usuarios/listar',async function(req, res){
+app.get('/usuarios/listar', async function (req, res) {
 
   let usuarios = await usuario.findAll()
 
-  res.render('listauser', {usuarios});
+  res.render('listauser', { usuarios });
 
   // res.json(usuarios)
 })
 
 // Deslogar
-app.post('/deslogar', function(req, res) {
+app.post('/deslogar', function (req, res) {
   res.cookie('token', null)
   res.redirect('/autenticar')
 })
 
 // Servidor Test
-app.listen(4000, function() {
+app.listen(4000, function () {
   console.log('App de Exemplo escutando na porta 4000!')
 });

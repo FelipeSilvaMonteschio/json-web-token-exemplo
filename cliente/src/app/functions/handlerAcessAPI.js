@@ -1,7 +1,7 @@
 'use server'
 import { cookies } from "next/dist/client/components/headers"
 
-const serverUrl = 'localhost:4000'
+const serverUrl = 'http://localhost:4000'
 
 // autenticação
 const getUserAuthenticated = async (user) => {
@@ -10,6 +10,25 @@ try{
     const resposeOfApi = await fetch(serverUrl + "/logar", 
     {   method:"POST",
         headers:{ "Content-Type":"Application/json"},
+        body: JSON.stringify(user)
+    }
+);
+const userAuth = await resposeOfApi.json();
+console.log(userAuth)
+return userAuth
+}catch{
+    return null
+}
+}
+
+const listUser = async (user) => {
+    console.log(user)
+    const token = cookies().get("token")?.value;
+try{
+    const resposeOfApi = await fetch(serverUrl + "/logar", 
+    {   method:"POST",
+        headers:{ "Content-Type":"Application/json",
+        Cookie: `token=${token}`},
         body: JSON.stringify(user)
     }
 );
