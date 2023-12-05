@@ -75,16 +75,14 @@
 .child {
     margin-left: 32%;
 }
-
+.bael{
+    padding-right: 10px;
+}
 .card {
-    width: 22%;
-    min-width: 500px;
-    height: 20vh;
-    min-height: 200px;
+    padding: 10px;
+    background-color: #ffffff;
+    width: 20%;
     border-radius: 8px;
-    background-color: lightblue;
-    padding-left: 1%;
-    margin: 1%;
 }
 .cardconteiner{
     display: flex;
