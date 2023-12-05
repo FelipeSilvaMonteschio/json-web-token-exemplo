@@ -1,0 +1,40 @@
+.form {
+    background-color: lightgray;
+    width: 350px;
+    height: 40vh, auto;
+    padding-top: 2%;
+    border-radius: 8px;
+    margin-top: 2%;
+    text-align: center;
+    margin-left: 38%;
+}
+#btn {
+    background-color: gray;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    margin-top: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10%;
+}
+#btn:hover{
+    background-color: rgb(63, 63, 63);
+    color: #fff;
+}
+.input {
+    width: 85%;
+    height: 1.8vh;
+    padding: 2% 4% 2% 6%;
+    border: none;
+    margin-top: 4%;
+    margin-bottom: 6%;
+    border-radius: 6px;
+}
+.input:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
